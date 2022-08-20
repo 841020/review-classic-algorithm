@@ -67,30 +67,33 @@ def gcd(num1, num2):
 ```python
 # Time complexity O(logN)
 # Space complexity O(1)
-def binary_search(low, high, target_num):
+def binary_search(lt, target_num):
+    low = 0
+    high = len(lt)-1
     while low <= high:
         mid = (low+high)//2
-        if mid == target_num:
+        guess = lt[mid]
+        if guess == target_num:
             return True
-        if mid > target_num:
+        if guess > target_num:
             high = mid-1
-        elif mid < target_num:
+        else:
             low = mid+1
     return False
 
 # recursion solution
 # Time complexity O(logN)
 # Space complexity O(N)
-def binary_search(low, high, target_num):
+def binary_search(low, high):
     if low > high:
         return False
     mid = (low+high)//2
-    if mid == target_num:
+    guess = lt[mid]
+    if guess == target_num:
         return True
-    if mid > target_num:
-        return binary_search(low, mid-1, target_num)
-    if mid < target_num:
-        return binary_search(mid+1, high, target_num)
+    if guess > target_num:
+        return binary_search(low, mid-1)
+    return binary_search(mid+1, high)
 ```
 
 # in-place merge sort
